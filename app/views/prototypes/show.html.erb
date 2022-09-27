@@ -2,9 +2,9 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= "プロトタイプのタイトル"%>
+        <%= @prototype.title %>
       </p>
-      <%= link_to @prototype.title, root_path, class: :prototype__user %>
+      <%= link_to "by" + @prototype.user.name, root_path, class: :prototype__user %>
       <%# 済、プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
         <% if user_signed_in? && current_user.id == @prototype.user_id %>
         <div class="prototype__manage">
@@ -27,12 +27,6 @@
           <p class="detail__title">コンセプト</p>
           <p class="detail__message">
             <%= @prototype.concept %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">投稿者</p>
-          <p class="detail__message">
-            <%= link_to @prototype.user.name, user_path(@prototype.user) %>
           </p>
         </div>
       </div>
@@ -58,7 +52,7 @@
             <% @comments.each do |comment| %>
             <li class="comments_list">
               <%= comment.comment %>
-              <%= link_to @prototype.user.name , user_path(@prototype.user), class: :comment_user %>
+              <%= link_to comment.user.name , user_path(@prototype.user), class: :comment_user %>
             </li>
             <% end %>
           <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
