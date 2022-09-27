@@ -1,0 +1,17 @@
+<div class="prototype">
+  <div class="image">
+    <%= link_to prototype_path(prototype) do %>
+      <%= image_tag prototype.image.variant(resize: '500x500'), class: 'prototype-image' if prototype.image.attached? %>
+    <% end %>
+  </div>
+  <div class="title">
+    <%= link_to prototype.title, prototype_path(prototype) %>
+  </div>
+  <div class="catch_copy">
+    <%= prototype.catch_copy %>
+  </div>
+  <div class="prototype-user">
+    <!-- 投稿したユーザー名情報を出力する -->
+    <%= link_to prototype.user.name, user_path(prototype.user) %>
+  </div>
+</div>
